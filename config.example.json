@@ -1,0 +1,8 @@
+{
+    "email": "email",
+    "password": "",
+    "serverip": "play.hypixel.net",
+    "token": "Discord Bot Token",
+    "version": "1.8.9",
+    "accounttype": "Account type (mojang/microsoft)"
+}
