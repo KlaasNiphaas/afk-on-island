@@ -7,6 +7,8 @@
 - [Installation](#installation)
   - [Stuff you need](#stuff-you-need)
   - [Setup Guide](#setup-guide)
+- [Commands](#commands)
+  - [runcmd](#runcmd)
 
 ## Installation
 
@@ -46,3 +48,11 @@ After it is done installing type
     node index.js
 
 Then your done! Enjoy
+
+## Commands
+
+Here are the current commands and their features
+
+### runcmd
+
+This command allows you to run commands ingame and show your their output. You can use it by typing !runcmd /[any command].
