@@ -39,7 +39,7 @@ After that you do
 
 Next edit and setup the config file with a proper Minecraft and Discord settings, once you're done you need to install discord.js and mineflayer using
 
-    yarn
+    npm i mineflayer and npm i discord.js
 
 In the command prompt
 
