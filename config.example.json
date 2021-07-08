@@ -4,5 +4,6 @@
     "serverip": "play.hypixel.net",
     "token": "Discord Bot Token",
     "version": "1.8.9",
-    "accounttype": "Account type (mojang/microsoft)"
+    "accounttype": "Account type (mojang/microsoft)",
+    "everyonechannel": "Channel Name"
 }
