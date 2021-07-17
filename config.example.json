@@ -5,5 +5,8 @@
     "token": "Discord Bot Token",
     "version": "1.8.9",
     "accounttype": "Account type (mojang/microsoft)",
-    "everyonechannel": "Channel Name"
+    "everyonechannel": "Channel Name",
+    "blacklist": {
+        "users": []
+    }
 }
