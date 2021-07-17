@@ -48,6 +48,74 @@ bot.once('spawn', async () => {
     }
 });
 
+bot.on('message', jsonMsg => {
+    const message = jsonMsg.toString();
+  
+    if (isPartyInviteMessage(message)) {
+        this.inviter = message.split(" ")[1]
+        if (this.inviter === "has") this.inviter = message.split(" ")[0].replace("-----------------------------\n", "") // Nons
+        if (config.blacklist.users.includes(this.inviter)) {
+            let sorryMsg = `You're on the blacklist for fragruns.`
+            sorryMsg = addCharToString(sorryMsg, "⭍", 15);
+            bot.chat("/msg " + this.inviter + " " + sorryMsg)
+        } else {
+        setTimeout(() => {
+            bot.chat("/p join " + this.inviter)
+        }, 100)
+    }
+      return
+    }
+  
+    if (this.inviter) {
+      if (isMessageYouJoinedParty(message)) {
+        this.partyLeader = this.inviter
+        this.inviter = 0
+  
+        setTimeout(() => {
+            this.partyLeader = 0
+            setTimeout(() => {
+                bot.chat("/pc Donate to Klaas :D")
+            }, 200)
+            bot.chat("/p leave")
+        }, 10000)
+    } else if (isMessageYoureInParty(message)) {
+        let pastInviter = this.inviter
+        this.inviter = 0
+  
+        let sorryMsg = "Sorry, I'm already in a party with " + (this.partyLeader ? this.partyLeader : "someone") + ", try in a bit! uwu"
+  
+            sorryMsg = addCharToString(sorryMsg, "⭍", 15);
+            bot.chat("/msg " + pastInviter + " " + sorryMsg)
+            setTimeout((pastInviter) => {
+                if (this.inviter === pastInviter || this.partyLeader == 0) bot.chat("/p leave") // In case it gets stuck
+            }, 10000)
+        }
+    }
+})
+  
+function isPartyInviteMessage(message) {
+    return message.endsWith(" here to join!\n-----------------------------") && !message.includes(':')
+}
+  
+function isMessageYouJoinedParty(message) {
+    return message.endsWith(" party!") && !message.includes(':')
+}
+  
+function isMessageYoureInParty(message) {
+    return message.endsWith(" to join another one.") && !message.includes(':')
+}
+  
+function addCharToString(string, chars, times) {
+    for (let i = 0; i < times; i++) {
+        let randomNumber = Math.floor(Math.random() * string.length + 1)
+        let a = string.split("")
+  
+        a.splice(randomNumber, 0, chars)
+        string = a.join("")
+    }
+    return string
+}
+
 bot.on("message", message => {
 	if (sending == true) {
 		chatData.push(`${message}`)
